@@ -7,68 +7,11 @@
   crossorigin="anonymous">
  </script>
  
- <script>
-
-callRandom01Jokes();
-callRandom02Jokes();
-callJokeByCategories('animal','animalId');
-callJokeByCategories('career','careerId');
-callJokeByCategories('fashion','fashionId');
-callJokeByCategories('money','moneyId');
-callJokeByCategories('music','musicId');
-callJokeByCategories('food','foodId');
-
-
-function showCustomizedJoke(response){
- document.getElementById("CategoriedJoke").innerHTML = "<h3>"+ response.value+"</h3>";   
-}
-
-function callRandom01Jokes(){
- fetch('https://api.chucknorris.io/jokes/random')
-     //this line Filters just the Jokes info NOt the http response
-         .then((response) => response.json())
-         .then((response) => 
-         ///here it's where you communicate to your html
-         document.getElementById("random01").innerHTML =  response.value 
-         );           
-}
-
-function callRandom02Jokes(){
- fetch('https://api.chucknorris.io/jokes/random')
-     //this line Filters just the Jokes info NOt the http response
-         .then((response) => response.json())
-         .then((response) => 
-         ///here it's where you communicate to your html
-         document.getElementById("random02").innerHTML =  response.value 
-         );           
-}
-
-
-
-function callJokeByCategory(){
- fetch('https://api.chucknorris.io/jokes/random?category='+ $("#choiceCategory :selected").text())
-     //this line Filters just the Jokes info NOt the http response
-         .then((response) => response.json())
-         .then((response) => 
-         ///here it's where you communicate to your html
-         showCustomizedJoke(response)
-         );           
-}
-
-//whereToPutId = the id of the html element that will receive the joke
-function callJokeByCategories(categoryName, whereToPutId){
- fetch('https://api.chucknorris.io/jokes/random?category='+ categoryName)
-     //this line Filters just the Jokes info NOt the http response
-         .then((response) => response.json())
-         .then((response) => 
-         ///here it's where you communicate to your html
-         document.getElementById(whereToPutId).innerHTML = response.value
-         );           
-}
-
-
-
- </script>
+ <script src="js/JokesRepository.js"></script>
+ <script src="js/app.js"> </script>
+   <!-- Link to the file hosted on your server, -->
+<link rel="stylesheet" href="dist/css/splide.min.css">
+<script src="dist/js/splide.min.js"></script>  
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -153,9 +96,9 @@ function callJokeByCategories(categoryName, whereToPutId){
             </nav>
           </div>
           <div class="header-btns  header-btn-l11 ms-auto d-none d-xs-inline-flex align-items-center">
-            <a class="btn log-in-btn focus-reset" href="#">
+            <!-- <a class="btn log-in-btn focus-reset" href="#">
               Log in
-            </a>
+            </a> -->
             <a class="download-trail-btn btn focus-reset" href="#">
               Talk to us
             </a>
@@ -180,7 +123,7 @@ function callJokeByCategories(categoryName, whereToPutId){
                 <div class="col-lg-10 col-md-10 col-sm-10">
                   <p class="position-relative banner-main-content-l-11">
                     Please, choose your category:<br>
-                    <select class="form-select" aria-label="Default select example" onchange="callJokeByCategory()" id="choiceCategory">
+                    <select class="form-select" aria-label="Default select example" onchange=" jokeModel.callJokeByCategory()" id="choiceCategory">
                       <option>animal</option>
                       <option>career</option>
                       <option>celebrity</option>
@@ -215,7 +158,16 @@ function callJokeByCategories(categoryName, whereToPutId){
             </div>
           </div>
           <div class="col-lg-9 order-lg-1 order-0" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-            <img src="image/l2/laptop-screen.png" alt="" class="w-100 hero-l11-main-image">
+            <!-- <img src="image/l2/laptop-screen.png" alt="" class="w-100 hero-l11-main-image"> -->
+            <section class="splide" aria-label="Splide Basic HTML Example">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">Slide 01</li>
+                  <li class="splide__slide">Slide 02</li>
+                  <li class="splide__slide">Slide 03</li>
+                </ul>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -557,11 +509,12 @@ function callJokeByCategories(categoryName, whereToPutId){
           <div class="col-md-6">
             <div class="footer-widget-l-11">
               <ul class="pl-0 list-unstyled d-flex flex-wrap justify-content-center align-items-end ">
-                <li class="d-flex"><a href="">About</a></li>
-                <li class="d-flex"><a href="">Features</a></li>
-                <li class="d-flex"><a href="">Works</a></li>
-                <li class="d-flex"><a href="">Career</a></li>
-                <li class="d-flex"><a href="">Contact</a></li>
+                <li class="d-flex"><a href="#">Home</a></li>
+                <li class="d-flex"><a href="#random-Jokes">Random Jokes</a></li>
+                <li class="d-flex"><a href="#Chuck-Norris-Game">Chuck Norris Game</a></li>
+                <li class="d-flex"><a href="#Categorized-Jokes"">Categorized Jokes</a></li>
+                <li class="d-flex"><a href="#Colaborative-Jokes">Colaborative Jokes</a></li>                
+         
               </ul>
             </div>
           </div>
